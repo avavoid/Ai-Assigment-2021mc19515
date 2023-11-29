@@ -1,0 +1,31 @@
+/* src/App.css */
+.App {
+  text-align: center;
+}
+
+.chat-container {
+  border: 2px solid blue;
+  height: 300px;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+  margin: 20px auto;
+  padding: 10px;
+  text-align: left;
+}
+
+.chat-message {
+  padding: 5px;
+  margin: 5px;
+}
+
+.user {
+  background-color: #ffffff;
+}
+
+.bot {
+  background-color: #e6f7ff;
+}
+
+.input-container {
+  margin-top: 20px;
+}
