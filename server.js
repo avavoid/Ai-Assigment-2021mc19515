@@ -1,32 +1,26 @@
-// server.js
 const express = require('express');
-const axios = require('axios');
+const bodyParser = require('body-parser');
+const openai = require('openai');
+const dotenv = require('dotenv');
+const cors = require('cors');
+
+dotenv.config();
+
 const app = express();
-const PORT = 3000;
+const port = 3001;
 
-app.use(express.json());
+// Enable CORS for all routes
+app.use(cors());
 
-app.post('/chat', async (req, res) => {
-  const { userInput } = req.body;
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-  try {
-    const response = await axios.post('https://api.openai.com/v1/engines/text-davinci-003/completions', {
-      prompt: `LibraryChatBot: ${userInput}`,
-      max_tokens: 150,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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',
-      },
-    });
-
-    res.json(response.data.choices[0].text.trim());
-  } catch (error) {
-    console.error('Error generating response:', error);
-    res.status(500).send('Internal Server Error');
-  }
+app.post('/chat', (req, res) => {
+    const userMessage = req.body.user_message;
+    const botResponse = "Hello! How can I help you?"; // Replace this with OpenAI response
+    res.json({ bot_response: botResponse });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });

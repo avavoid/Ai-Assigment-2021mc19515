@@ -1,1 +1,2 @@
-# Ai-Assigment-2021mc19515
+# ai_assignment_n-r
+with node and react 
